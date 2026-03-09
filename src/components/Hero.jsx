@@ -89,19 +89,18 @@ function Hero() {
             >
               <button
                 onClick={() => scrollToSection('gallery')}
-                className="btn-primary group relative px-8 py-4 bg-[var(--color-accent)] text-white font-bold text-lg rounded-sm overflow-hidden transition-all duration-400 hover:shadow-2xl hover:-translate-y-1 active:scale-[0.98]"
+                className="btn-primary group px-8 py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold text-lg rounded-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98]"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-[var(--color-accent-hover)] to-[var(--color-accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
-                <span className="relative flex items-center gap-3 z-10">
+                <span className="flex items-center gap-3">
                   Pogledaj radove
-                  <svg className="w-5 h-5 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </span>
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
-                className="btn-secondary px-8 py-4 border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] font-bold text-lg rounded-sm hover:border-[var(--color-accent)] hover:text-white hover:bg-[var(--color-accent)] transition-all duration-400 active:scale-[0.98]"
+                className="btn-secondary px-8 py-4 border-2 border-[var(--color-text-primary)] text-[var(--color-text-primary)] font-bold text-lg rounded-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.98]"
               >
                 Kontaktiraj nas
               </button>
@@ -243,9 +242,14 @@ function Hero() {
             >
               <button
                 onClick={() => scrollToSection('gallery')}
-                className="btn-primary px-8 py-4 bg-[var(--color-accent)] text-white font-bold text-lg rounded-sm hover:bg-[var(--color-accent-hover)] transition-all active:scale-[0.98] shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                className="btn-primary group px-8 py-4 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-bold text-lg rounded-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] shadow-lg"
               >
+                <span className="flex items-center justify-center gap-3">
                 Pogledaj radove
+                  <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
