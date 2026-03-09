@@ -242,7 +242,7 @@ function Gallery() {
             Naši radovi
           </h2>
           <p className="text-xl lg:text-2xl text-[var(--color-text-secondary)] max-w-3xl mx-auto leading-relaxed font-light">
-            Pogledajte projekte koji govore više od riječi
+            Pogledajte projekte koji govore više od reči
           </p>
         </div>
 

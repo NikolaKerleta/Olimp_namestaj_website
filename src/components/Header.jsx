@@ -38,8 +38,8 @@ function Header() {
 
   const navItems = [
     { label: 'Početna', id: 'hero' },
-    { label: 'O nama', id: 'about' },
     { label: 'Galerija', id: 'gallery' },
+    { label: 'O nama', id: 'about' },
     { label: 'Utisci', id: 'testimonials' },
     { label: 'Kontakt', id: 'contact' },
   ];
