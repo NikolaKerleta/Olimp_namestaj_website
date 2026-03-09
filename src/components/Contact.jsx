@@ -196,7 +196,7 @@ function Contact() {
             Razgovarajmo
           </h2>
           <p className="text-xl lg:text-2xl text-[var(--color-text-secondary)] max-w-3xl mx-auto leading-relaxed font-light">
-            Rado ćemo odgovoriti na sva vaša pitanja
+            Rado ćemo odgovoriti na sva Vaša pitanja
           </p>
         </div>
 
@@ -307,7 +307,7 @@ function Contact() {
                     required
                     rows="6"
                     className="w-full px-4 py-3 bg-[var(--color-background)] border-2 border-[var(--color-text-secondary)]/15 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 transition-all outline-none resize-none text-lg rounded-none"
-                    placeholder="Opišite vaš projekat..."
+                    placeholder="Opišite Vaš projekat..."
                   ></textarea>
                 </div>
 
