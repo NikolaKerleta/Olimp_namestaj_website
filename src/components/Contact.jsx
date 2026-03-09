@@ -379,7 +379,7 @@ function Contact() {
               {/* Real Google Maps Embed */}
               <div className="h-72 border-2 border-[var(--color-text-secondary)]/10 shadow-inner rounded-none overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2809.986!2d19.8335496!3d45.2671352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b10a0c1a7e5e5%3A0x1c5e17a5f4f5c5e5!2sTitleska%204%2C%20Novi%20Sad!5e0!3m2!1sen!2srs!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2806.3908558575736!2d19.827260375366613!3d45.30052964434556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b1130439724ed%3A0xb2779e4717573b7e!2sOLIMP%20-%20name%C5%A1taj!5e0!3m2!1sen!2srs!4v1773083053430!5m2!1sen!2srs"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
