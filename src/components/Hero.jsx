@@ -56,23 +56,9 @@ function Hero() {
         {/* Left: Content - Properly centered in column */}
         <div className="flex items-center justify-center px-6 lg:px-8 xl:px-12 bg-gradient-to-br from-[var(--color-background)] to-[var(--color-surface)] relative z-10">
           <div className="max-w-xl w-full pt-16">
-            {/* Heritage Badge - EVEN MORE PROMINENT */}
-            <div
-              className={`inline-flex items-center gap-3 mb-5 transition-all duration-1000 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <div className="relative flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200/40 rounded-full shadow-lg hover:shadow-2xl transition-shadow">
-                <div className="w-4 h-4 rounded-full bg-amber-600 animate-pulse"></div>
-                <span className="text-amber-900 text-s font-bold tracking-wider uppercase">
-                  Od 1996. godine
-                </span>
-              </div>
-            </div>
-
             {/* Main Headline */}
             <h1
-              className={`text-5xl xl:text-6xl 2xl:text-7xl font-bold text-[var(--color-text-primary)] mb-10 leading-[1.05] tracking-tight transition-all duration-1000 delay-150 ${
+              className={`text-5xl xl:text-6xl 2xl:text-7xl font-bold text-[var(--color-text-primary)] mb-10 leading-[1.05] tracking-tight transition-all duration-1000 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
@@ -229,27 +215,15 @@ function Hero() {
         {/* Content - Enhanced Mobile with MORE SPACE */}
         <div className="relative z-20 flex items-center justify-center min-h-screen px-6 py-40">
           <div className="max-w-xl text-center">
-            {/* Heritage Badge - LARGER */}
-            <div
-              className={`inline-flex items-center gap-3 px-5 py-3 mb-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full transition-all duration-1000 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <div className="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></div>
-              <span className="text-amber-100 text-base font-bold tracking-wider uppercase">
-                Od 1996. godine
-              </span>
-            </div>
-
             {/* Headline */}
             <h1
-              className={`text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-12 leading-[1.05] tracking-tight transition-all duration-1000 delay-150 ${
+              className={`text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-12 leading-[1.05] tracking-tight transition-all duration-1000 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
               Vaš prostor,
               <br />
-              <span className="text-amber-300 text-[1.15em]">naš zanat</span>
+              <span className="text-[var(--color-accent)] text-[1.15em]">naš zanat</span>
             </h1>
 
             {/* Subheadline */}
@@ -283,7 +257,7 @@ function Hero() {
 
             {/* Scroll Indicator - RESPONSIVE: hidden on very small screens */}
             <div
-              className={`hidden xs:flex flex-col items-center gap-2 text-white/70 transition-all duration-1000 delay-600 ${
+              className={`hidden sm:flex flex-col items-center gap-2 text-white/70 transition-all duration-1000 delay-600 ${
                 isLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             >
