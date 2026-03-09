@@ -109,7 +109,7 @@ function Contact() {
       value: (
         <div className="space-y-2">
           <div className="flex flex-col">
-            <span className="text-sm text-[var(--color-text-secondary)]/70">Željko Stojanović:</span>
+            <span className="text-sm text-[var(--color-text-secondary)]/70">Željko Stojaković:</span>
             <a href="tel:+381638072937" className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors text-lg font-medium">
               +381 63 807 2937
             </a>
@@ -155,7 +155,7 @@ function Contact() {
         </svg>
       ),
       label: 'Adresa',
-      value: 'Titleska 4, Novi Sad, Serbia',
+      value: 'Titelska 4, Novi Sad, Serbia',
       link: null
     },
     {
