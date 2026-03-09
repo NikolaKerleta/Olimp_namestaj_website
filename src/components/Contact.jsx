@@ -109,21 +109,15 @@ function Contact() {
       value: (
         <div className="space-y-2">
           <div className="flex flex-col">
-            <span className="text-sm text-[var(--color-text-secondary)]/70">Radionica:</span>
-            <a href="tel:+381214567890" className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors text-lg font-medium">
-              +381 21 456 789
-            </a>
-          </div>
-          <div className="flex flex-col">
             <span className="text-sm text-[var(--color-text-secondary)]/70">Željko Stojanović:</span>
-            <a href="tel:+381631234567" className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors text-lg font-medium">
-              +381 63 123 456
+            <a href="tel:+381638072937" className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors text-lg font-medium">
+              +381 63 807 2937
             </a>
           </div>
           <div className="flex flex-col">
             <span className="text-sm text-[var(--color-text-secondary)]/70">Dejan Kerleta:</span>
-            <a href="tel:+381647890123" className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors text-lg font-medium">
-              +381 64 789 012
+            <a href="tel:+38163529064" className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors text-lg font-medium">
+              +381 63 529 064
             </a>
           </div>
         </div>
