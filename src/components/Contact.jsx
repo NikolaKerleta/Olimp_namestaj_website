@@ -386,7 +386,7 @@ function Contact() {
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Olimp Lokacija - Titleska 4, Novi Sad, Serbia"
+                  title="Olimp Lokacija - Titelska 4, Novi Sad, Serbia"
                 />
               </div>
             </div>
