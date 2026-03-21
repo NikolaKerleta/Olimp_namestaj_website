@@ -52,6 +52,7 @@ import frontdesk3 from '../assets/images/Gallery/FrontDesks/front_desk.jpg';
 
 function Gallery() {
   const [activeFilter, setActiveFilter] = useState('sve');
+  const [visualActiveFilter, setVisualActiveFilter] = useState('sve');
   const [isVisible, setIsVisible] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -151,8 +152,12 @@ function Gallery() {
       setCurrentCardIndex(0);
       setDragX(0);
       setIsDragging(false);
+      // Phase 1: collapse the current button immediately
+      setVisualActiveFilter(null);
+      // Phase 2: after collapse animation, switch data + expand new button
       setTimeout(() => {
         setActiveFilter(filterId);
+        setVisualActiveFilter(filterId);
         setIsChanging(false);
       }, 300);
     }
@@ -288,7 +293,7 @@ function Gallery() {
               key={filter.id}
               onClick={() => handleFilterChange(filter.id)}
               className={`group relative h-11 px-3 text-base font-bold tracking-wide transition-all duration-300 overflow-hidden rounded-sm flex items-center ${
-                activeFilter === filter.id
+                visualActiveFilter === filter.id
                   ? 'bg-[var(--color-accent)] text-white shadow-2xl px-6'
                   : 'bg-white text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] border-2 border-[var(--color-text-secondary)]/20 hover:border-[var(--color-accent)]/60 shadow-md hover:shadow-xl hover:px-6'
               }`}
@@ -296,14 +301,14 @@ function Gallery() {
               <span className="relative z-10 flex items-center">
                 {filter.label}
                 <span className={`text-sm py-1 rounded-full font-semibold transition-all duration-300 inline-block overflow-hidden whitespace-nowrap ${
-                  activeFilter === filter.id
+                  visualActiveFilter === filter.id
                     ? 'bg-white/25 opacity-100 max-w-[3rem] ml-3 px-2'
-                    : 'bg-[var(--color-accent)]/10 text-[var(--color-accent)] opacity-0 max-w-0 ml-0 px-0 group-hover:opacity-100 group-hover:max-w-[3rem] group-hover:ml-3 group-hover:px-2'
+                    : 'bg-[var(--color-accent)]/10 text-[var(--color-accent)] opacity-0 max-w-0 ml-0 px-0'
                 }`}>
                   {filter.count}
                 </span>
               </span>
-              {activeFilter !== filter.id && (
+              {visualActiveFilter !== filter.id && (
                 <span className="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)]/10 to-[var(--color-accent)]/5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               )}
             </button>
