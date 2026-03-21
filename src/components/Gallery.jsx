@@ -159,11 +159,11 @@ function Gallery() {
   };
 
   const nextCard = () => {
-    setCurrentCardIndex(prev => Math.min(prev + 1, filteredProjects.length - 1));
+    setCurrentCardIndex(prev => (prev + 1) % filteredProjects.length);
   };
 
   const prevCard = () => {
-    setCurrentCardIndex(prev => Math.max(prev - 1, 0));
+    setCurrentCardIndex(prev => (prev - 1 + filteredProjects.length) % filteredProjects.length);
   };
 
   // Pointer drag handlers — card follows finger/mouse live
@@ -333,13 +333,36 @@ function Gallery() {
         {activeFilter === 'sve' ? (
           /* Stacked Photo Gallery with live drag — "Sve" mode */
           <div
-            className={`relative max-w-4xl mx-auto transition-opacity duration-300 ${
+            className={`relative transition-opacity duration-300 ${
               isChanging ? 'opacity-0' : 'opacity-100'
             }`}
             style={{ minHeight: '600px' }}
           >
+            {/* Desktop side arrows — absolutely positioned left/right of the card */}
+            {filteredProjects.length > 1 && (
+              <>
+                <button
+                  onClick={prevCard}
+                  className="hidden lg:flex absolute left-16 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white border-2 border-[var(--color-text-secondary)]/20 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-all items-center justify-center group shadow-lg hover:scale-110 hover:shadow-xl"
+                  aria-label="Prethodni projekat"
+                >
+                  <svg className="w-6 h-6 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextCard}
+                  className="hidden lg:flex absolute right-16 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white border-2 border-[var(--color-text-secondary)]/20 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-all items-center justify-center group shadow-lg hover:scale-110 hover:shadow-xl"
+                  aria-label="Sledeći projekat"
+                >
+                  <svg className="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
             {filteredProjects.length > 0 ? (
-              <div className="relative w-full h-[500px] md:h-[680px] lg:h-[700px] flex items-center justify-center">
+              <div className="relative w-full max-w-4xl mx-auto lg:px-20 h-[500px] md:h-[680px] lg:h-[700px] flex items-center justify-center">
                 {filteredProjects.map((project, index) => {
                   const isActive = index === currentCardIndex;
                   const stackOffset = index - currentCardIndex;
@@ -493,10 +516,10 @@ function Gallery() {
         {/* Navigation Controls & Counter - Only for "Sve" mode */}
         {activeFilter === 'sve' && filteredProjects.length > 1 && (
           <div className="flex items-center justify-center gap-8 lg:mt-16 md:mt-12">
+            {/* Mobile-only prev arrow */}
             <button
               onClick={prevCard}
-              disabled={currentCardIndex === 0}
-              className="w-14 h-14 rounded-full bg-white border-2 border-[var(--color-text-secondary)]/20 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center justify-center group shadow-lg hover:scale-110 hover:shadow-xl"
+              className="lg:hidden w-14 h-14 rounded-full bg-white border-2 border-[var(--color-text-secondary)]/20 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-all flex items-center justify-center group shadow-lg hover:scale-110 hover:shadow-xl"
               aria-label="Prethodni projekat"
             >
               <svg className="w-6 h-6 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -510,10 +533,10 @@ function Gallery() {
               <span className="text-lg text-[var(--color-text-secondary)]">{filteredProjects.length}</span>
             </div>
 
+            {/* Mobile-only next arrow */}
             <button
               onClick={nextCard}
-              disabled={currentCardIndex === filteredProjects.length - 1}
-              className="w-14 h-14 rounded-full bg-white border-2 border-[var(--color-text-secondary)]/20 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center justify-center group shadow-lg hover:scale-110 hover:shadow-xl"
+              className="lg:hidden w-14 h-14 rounded-full bg-white border-2 border-[var(--color-text-secondary)]/20 hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-all flex items-center justify-center group shadow-lg hover:scale-110 hover:shadow-xl"
               aria-label="Sledeći projekat"
             >
               <svg className="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
