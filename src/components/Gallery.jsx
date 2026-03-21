@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useSwipeable } from 'react-swipeable';
+import { useSwipeable } from 'react-swipeable'; // kept for lightbox only
 
 // Import kitchen images (20 total)
 import kitchen1 from '../assets/images/Gallery/Kitchens/kitchen_modern_potential_hero.jpg';
@@ -55,10 +55,16 @@ function Gallery() {
   const [isVisible, setIsVisible] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
   const sectionRef = useRef(null);
+
+  // Drag state
+  const [dragX, setDragX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isFlying, setIsFlying] = useState(false);
+  const dragStartX = useRef(0);
+  const SWIPE_THRESHOLD = 100;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -142,7 +148,9 @@ function Gallery() {
   const handleFilterChange = (filterId) => {
     if (filterId !== activeFilter) {
       setIsChanging(true);
-      setCurrentCardIndex(0); // Reset to first card
+      setCurrentCardIndex(0);
+      setDragX(0);
+      setIsDragging(false);
       setTimeout(() => {
         setActiveFilter(filterId);
         setIsChanging(false);
@@ -151,14 +159,42 @@ function Gallery() {
   };
 
   const nextCard = () => {
-    if (currentCardIndex < filteredProjects.length - 1) {
-      setCurrentCardIndex(currentCardIndex + 1);
-    }
+    setCurrentCardIndex(prev => Math.min(prev + 1, filteredProjects.length - 1));
   };
 
   const prevCard = () => {
-    if (currentCardIndex > 0) {
-      setCurrentCardIndex(currentCardIndex - 1);
+    setCurrentCardIndex(prev => Math.max(prev - 1, 0));
+  };
+
+  // Pointer drag handlers — card follows finger/mouse live
+  const handlePointerDown = (e) => {
+    if (isFlying) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    dragStartX.current = e.clientX;
+    setIsDragging(true);
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging) return;
+    setDragX(e.clientX - dragStartX.current);
+  };
+
+  const handlePointerUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    if (Math.abs(dragX) > SWIPE_THRESHOLD) {
+      // Both directions advance to next picture
+      const flyDirection = dragX < 0 ? -1 : 1;
+      setIsFlying(true);
+      setDragX(flyDirection * 700);
+      setTimeout(() => {
+        nextCard();
+        setDragX(0);
+        setIsFlying(false);
+      }, 380);
+    } else {
+      setDragX(0);
     }
   };
 
@@ -166,13 +202,17 @@ function Gallery() {
   const openLightbox = (index) => {
     setLightboxImageIndex(index);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = ''; // Restore scroll
   };
+
+  // Sync body overflow with lightbox state
+  useEffect(() => {
+    document.body.style.overflow = lightboxOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [lightboxOpen]);
 
   const nextLightboxImage = () => {
     setLightboxImageIndex((prev) => (prev + 1) % filteredProjects.length);
@@ -192,15 +232,6 @@ function Gallery() {
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [lightboxOpen]);
-
-  // Swipe handlers for main gallery
-  const handlers = useSwipeable({
-    onSwipedLeft: () => nextCard(),
-    onSwipedRight: () => prevCard(),
-    trackMouse: true, // Enable mouse drag on desktop
-    preventScrollOnSwipe: true,
-    delta: 10,
-  });
 
   // Swipe handlers for lightbox
   const lightboxHandlers = useSwipeable({
@@ -300,9 +331,8 @@ function Gallery() {
 
         {/* Conditional rendering: Swipe mode for "Sve", Grid mode for specific categories */}
         {activeFilter === 'sve' ? (
-          /* Stacked Photo Gallery with Swipe - Only for "Sve" */
+          /* Stacked Photo Gallery with live drag — "Sve" mode */
           <div
-            {...handlers}
             className={`relative max-w-4xl mx-auto transition-opacity duration-300 ${
               isChanging ? 'opacity-0' : 'opacity-100'
             }`}
@@ -310,79 +340,110 @@ function Gallery() {
           >
             {filteredProjects.length > 0 ? (
               <div className="relative w-full h-[500px] md:h-[680px] lg:h-[700px] flex items-center justify-center">
-              {/* Stack of photos */}
-              {filteredProjects.map((project, index) => {
-                const isActive = index === currentCardIndex;
-                const isPast = index < currentCardIndex;
-                const isFuture = index > currentCardIndex;
-                const stackIndex = filteredProjects.length - 1 - index;
+                {filteredProjects.map((project, index) => {
+                  const isActive = index === currentCardIndex;
+                  const stackOffset = index - currentCardIndex;
 
-                // Only show current card and 3 cards behind it
-                const shouldShow = index >= currentCardIndex && index < currentCardIndex + 4;
+                  // Only render the active card + 3 behind it; nothing before
+                  if (index < currentCardIndex || index >= currentCardIndex + 4) return null;
 
-                if (!shouldShow) return null;
+                  // Progress toward threshold (0 → 1) for subtle behind-card reactions
+                  const dragProgress = Math.min(Math.abs(dragX) / SWIPE_THRESHOLD, 1);
 
-                return (
-                  <div
-                    key={project.id}
-                    className={`absolute w-full max-w-3xl transition-all duration-700 ease-out ${
-                      isActive ? 'cursor-pointer' : 'pointer-events-none'
-                    } ${isDragging ? 'cursor-grabbing' : ''}`}
-                    style={{
-                      transform: isActive
-                        ? 'translateY(0) rotate(0deg) scale(1)'
-                        : isPast
-                        ? `translateY(-100%) rotate(${getTiltAngle(index)}deg) scale(0.9)`
-                        : `translateY(${(index - currentCardIndex) * 12}px) rotate(${getTiltAngle(index)}deg) scale(${1 - (index - currentCardIndex) * 0.03})`,
-                      opacity: isActive ? 1 : isPast ? 0 : 0.6,
-                      zIndex: filteredProjects.length - index,
-                      boxShadow: isActive
-                        ? '0 25px 50px rgba(0, 0, 0, 0.25)'
-                        : `0 ${10 + (index - currentCardIndex) * 5}px ${20 + (index - currentCardIndex) * 10}px rgba(0, 0, 0, 0.15)`,
-                    }}
-                    onClick={() => isActive && openLightbox(index)}
-                  >
-                    <div className="bg-white p-4 lg:p-6 rounded-sm shadow-xl border-4 border-white group hover:border-[var(--color-accent)]/30 transition-all">
-                      <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[var(--color-surface)] mb-4 relative">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          draggable="false"
-                          loading="lazy"
-                        />
-                        {/* Click indicator overlay */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-4">
-                            <svg className="w-8 h-8 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  const activeTransform = `translateX(${dragX}px) rotate(${dragX * 0.06}deg) scale(1)`;
+
+                  const behindY = stackOffset * 12 - dragProgress * 6 * Math.min(stackOffset, 1);
+                  const behindTransform = `translateY(${behindY}px) rotate(${getTiltAngle(index)}deg) scale(${Math.max(0.88, 1 - stackOffset * 0.04 + dragProgress * 0.02)})`;
+
+                  // Transition: none while dragging, fast fly-off while flying, smooth spring otherwise
+                  const cardTransition = isDragging
+                    ? 'none'
+                    : isFlying && isActive
+                    ? 'transform 0.38s cubic-bezier(0.4, 0, 1, 1), opacity 0.38s ease-out'
+                    : 'transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease-out';
+
+                  return (
+                    <div
+                      key={project.id}
+                      className={`absolute w-full max-w-3xl ${
+                        isActive
+                          ? isDragging ? 'cursor-grabbing' : 'cursor-grab'
+                          : 'pointer-events-none'
+                      }`}
+                      style={{
+                        transform: isActive ? activeTransform : behindTransform,
+                        opacity: 1,
+                        zIndex: filteredProjects.length - index,
+                        transition: cardTransition,
+                        boxShadow: isActive
+                          ? `0 ${25 + Math.abs(dragX) * 0.05}px 50px rgba(0,0,0,${0.25 + Math.abs(dragX) * 0.0003})`
+                          : `0 ${8 + stackOffset * 4}px ${16 + stackOffset * 8}px rgba(0,0,0,0.12)`,
+                        willChange: isActive ? 'transform' : 'auto',
+                        touchAction: isActive ? 'none' : 'auto',
+                      }}
+                      onPointerDown={isActive ? handlePointerDown : undefined}
+                      onPointerMove={isActive ? handlePointerMove : undefined}
+                      onPointerUp={isActive ? handlePointerUp : undefined}
+                      onPointerCancel={isActive ? handlePointerUp : undefined}
+                      onClick={() => {
+                        if (isActive && !isFlying && Math.abs(dragX) < 5) openLightbox(index);
+                      }}
+                    >
+                      {/* Swipe direction hint overlay */}
+                      {isActive && isDragging && (
+                        <>
+                          <div
+                            className="absolute inset-0 rounded-sm z-10 pointer-events-none transition-opacity"
+                            style={{ opacity: Math.max(0, -dragX / SWIPE_THRESHOLD) * 0.25, background: 'linear-gradient(to right, rgba(181,87,58,0.4), transparent)' }}
+                          />
+                          <div
+                            className="absolute inset-0 rounded-sm z-10 pointer-events-none"
+                            style={{ opacity: Math.max(0, dragX / SWIPE_THRESHOLD) * 0.25, background: 'linear-gradient(to left, rgba(181,87,58,0.4), transparent)' }}
+                          />
+                        </>
+                      )}
+
+                      <div className="bg-white p-4 lg:p-6 rounded-sm shadow-xl border-4 border-white select-none">
+                        <div className="aspect-[4/3] overflow-hidden rounded-sm bg-[var(--color-surface)] mb-4 relative">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            draggable="false"
+                            loading="lazy"
+                          />
+                          {isActive && !isDragging && (
+                            <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300 flex items-center justify-center group">
+                              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-4">
+                                <svg className="w-8 h-8 text-[var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                                </svg>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        <div className="text-center">
+                          <div className="flex items-center justify-center gap-2 text-[var(--color-text-secondary)] text-base">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                             </svg>
+                            <span className="uppercase tracking-wider font-bold">
+                              {filters.find(f => f.id === project.category)?.label || 'Projekt'}
+                            </span>
                           </div>
                         </div>
                       </div>
-                      <div className="text-center">
-                        <div className="flex items-center justify-center gap-2 text-[var(--color-text-secondary)] text-base">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                          </svg>
-                          <span className="uppercase tracking-wider font-bold">
-                            {filters.find(f => f.id === project.category)?.label || 'Projekt'}
-                          </span>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="text-center py-24">
-              <div className="text-6xl mb-6 text-[var(--color-accent)]/20">🔍</div>
-              <p className="text-2xl text-[var(--color-text-secondary)] font-light">
-                Nema dostupnih projekata u ovoj kategoriji.
-              </p>
-            </div>
-          )}
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="text-center py-24">
+                <p className="text-2xl text-[var(--color-text-secondary)] font-light">
+                  Nema dostupnih projekata u ovoj kategoriji.
+                </p>
+              </div>
+            )}
           </div>
         ) : (
           /* Grid Layout for Specific Categories */
