@@ -156,7 +156,7 @@ function Contact() {
       ),
       label: 'Adresa',
       value: 'Titelska 4, Novi Sad, Serbia',
-      link: null
+      link: 'https://maps.google.com/?q=Titelska+4,+Novi+Sad,+Serbia'
     },
     {
       icon: (
@@ -354,9 +354,21 @@ function Contact() {
               <div className="space-y-10 mb-14 flex-1">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start gap-5 group">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-400">
-                      {info.icon}
-                    </div>
+                    {info.link ? (
+                      <a
+                        href={info.link}
+                        target={info.link.startsWith('http') ? '_blank' : undefined}
+                        rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="flex-shrink-0 w-14 h-14 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-400"
+                        aria-label={info.label}
+                      >
+                        {info.icon}
+                      </a>
+                    ) : (
+                      <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-400">
+                        {info.icon}
+                      </div>
+                    )}
                     <div>
                       <p className="font-bold text-[var(--color-text-primary)] mb-2 text-lg">
                         {info.label}
@@ -364,6 +376,8 @@ function Contact() {
                       {info.link ? (
                         <a
                           href={info.link}
+                          target={info.link.startsWith('http') ? '_blank' : undefined}
+                          rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                           className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors text-lg font-medium"
                         >
                           {info.value}

@@ -68,6 +68,7 @@ h2 {
 
 /* Smooth Transitions with Subtle Delays */
 a, button {
+  cursor: pointer;
   transition: all 0.35s var(--transition-elegant);
 }
 

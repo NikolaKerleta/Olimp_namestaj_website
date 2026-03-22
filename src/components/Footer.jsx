@@ -30,11 +30,17 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
           {/* Logo & Tagline */}
           <div>
-            <img
-              src={logoLettersWhite}
-              alt="Olimp"
-              className="w-36 mb-6 hover:scale-105 transition-transform duration-300"
-            />
+            <button
+              onClick={() => scrollToSection('hero')}
+              className="focus:outline-none"
+              aria-label="Olimp logo - povratak na početnu"
+            >
+              <img
+                src={logoLettersWhite}
+                alt="Olimp"
+                className="w-36 mb-6 hover:scale-105 transition-transform duration-300"
+              />
+            </button>
             <p className="text-white/80 leading-relaxed text-lg mb-6 font-light">
               Stolarska majstorija sa tradicijom od 1996. godine.
               Kvalitet koji traje generacijama.
