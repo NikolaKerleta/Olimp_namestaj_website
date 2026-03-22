@@ -65,6 +65,8 @@ function Gallery() {
   const [isDragging, setIsDragging] = useState(false);
   const [isFlying, setIsFlying] = useState(false);
   const dragStartX = useRef(0);
+  const dragStartY = useRef(0);
+  const dragDirection = useRef(null); // 'horizontal' | 'vertical' | null
   const SWIPE_THRESHOLD = 100;
 
   useEffect(() => {
@@ -177,17 +179,36 @@ function Gallery() {
     if (e.pointerType === 'mouse') return; // mouse users click to zoom, arrows to navigate
     e.currentTarget.setPointerCapture(e.pointerId);
     dragStartX.current = e.clientX;
+    dragStartY.current = e.clientY;
+    dragDirection.current = null;
     setIsDragging(true);
   };
 
   const handlePointerMove = (e) => {
     if (!isDragging) return;
-    setDragX(e.clientX - dragStartX.current);
+    const dx = e.clientX - dragStartX.current;
+    const dy = e.clientY - dragStartY.current;
+
+    // Lock direction after 8px of movement
+    if (!dragDirection.current && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+      dragDirection.current = Math.abs(dx) > Math.abs(dy) ? 'horizontal' : 'vertical';
+    }
+
+    if (dragDirection.current === 'horizontal') {
+      setDragX(dx);
+    }
+    // vertical: do nothing, let the browser scroll
   };
 
   const handlePointerUp = () => {
     if (!isDragging) return;
     setIsDragging(false);
+
+    if (dragDirection.current !== 'horizontal') {
+      dragDirection.current = null;
+      return;
+    }
+    dragDirection.current = null;
 
     if (Math.abs(dragX) > SWIPE_THRESHOLD) {
       // Both directions advance to next picture
@@ -406,7 +427,7 @@ function Gallery() {
                           ? `0 ${25 + Math.abs(dragX) * 0.05}px 50px rgba(0,0,0,${0.25 + Math.abs(dragX) * 0.0003})`
                           : `0 ${8 + stackOffset * 4}px ${16 + stackOffset * 8}px rgba(0,0,0,0.12)`,
                         willChange: isActive ? 'transform' : 'auto',
-                        touchAction: isActive ? 'none' : 'auto',
+                        touchAction: isActive ? 'pan-y' : 'auto',
                       }}
                       onPointerDown={isActive ? handlePointerDown : undefined}
                       onPointerMove={isActive ? handlePointerMove : undefined}
