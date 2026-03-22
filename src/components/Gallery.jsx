@@ -174,6 +174,7 @@ function Gallery() {
   // Pointer drag handlers — card follows finger/mouse live
   const handlePointerDown = (e) => {
     if (isFlying) return;
+    if (e.pointerType === 'mouse') return; // mouse users click to zoom, arrows to navigate
     e.currentTarget.setPointerCapture(e.pointerId);
     dragStartX.current = e.clientX;
     setIsDragging(true);
@@ -257,7 +258,7 @@ function Gallery() {
     <section
       id="gallery"
       ref={sectionRef}
-      className="py-[var(--spacing-section-mobile)] lg:py-[var(--spacing-section)] bg-[var(--color-background)] relative overflow-hidden"
+      className="py-[var(--spacing-section-mobile)] lg:py-[var(--spacing-section)] bg-[var(--color-background)] relative overflow-hidden [overflow-anchor:none]"
     >
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -394,9 +395,7 @@ function Gallery() {
                     <div
                       key={project.id}
                       className={`absolute w-full max-w-3xl ${
-                        isActive
-                          ? isDragging ? 'cursor-grabbing' : 'cursor-grab'
-                          : 'pointer-events-none'
+                        isActive ? 'cursor-pointer' : 'pointer-events-none'
                       }`}
                       style={{
                         transform: isActive ? activeTransform : behindTransform,
@@ -625,10 +624,6 @@ function Gallery() {
             )}
           </div>
 
-          {/* Instruction text */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-sm">
-            Pritisnite ESC ili kliknite izvan slike za zatvaranje
-          </div>
         </div>
       )}
     </section>
