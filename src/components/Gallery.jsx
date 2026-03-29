@@ -50,6 +50,52 @@ import frontdesk1 from '../assets/images/Gallery/FrontDesks/front_desk_2_potenti
 import frontdesk2 from '../assets/images/Gallery/FrontDesks/front_desk_1_potential_hero.jpg';
 import frontdesk3 from '../assets/images/Gallery/FrontDesks/front_desk.jpg';
 
+// Import new kitchen images (18 additional)
+import kitchen21 from '../assets/images/Gallery/Kitchens/20150326_124037.jpg';
+import kitchen22 from '../assets/images/Gallery/Kitchens/IMG-001f24ebff4b1fe53a5ef47cd11a429a-V.jpg';
+import kitchen23 from '../assets/images/Gallery/Kitchens/IMG-022cd268c15419c18f9e7acb93a4d06f-V.jpg';
+import kitchen24 from '../assets/images/Gallery/Kitchens/IMG-16b79307b800c58cd946f1430fdb18d2-V.jpg';
+import kitchen25 from '../assets/images/Gallery/Kitchens/IMG-180a7e67f6aec2c2cf140e01af348bea-V.jpg';
+import kitchen26 from '../assets/images/Gallery/Kitchens/IMG-234fe3b6c9d15a82dba13517bb458558-V.jpg';
+import kitchen27 from '../assets/images/Gallery/Kitchens/IMG-29d0443911b254035d3f70c187e55da2-V.jpg';
+import kitchen28 from '../assets/images/Gallery/Kitchens/IMG-29eba81c1a0b42e0252791e8f9205e63-V.jpg';
+import kitchen29 from '../assets/images/Gallery/Kitchens/IMG-32bc712408bb98404cb11cf4bfa3ac5e-V.jpg';
+import kitchen30 from '../assets/images/Gallery/Kitchens/IMG-3a4271fc57d6274da1cb5f72340dfe67-V.jpg';
+import kitchen31 from '../assets/images/Gallery/Kitchens/IMG-3e1591743edfcba6751510f2b2338433-V.jpg';
+import kitchen32 from '../assets/images/Gallery/Kitchens/IMG-63aebc18eb1954d100d8ef2652d7f66b-V.jpg';
+import kitchen33 from '../assets/images/Gallery/Kitchens/IMG-7c95d724e77feaa6ba8766f9e125b907-V.jpg';
+import kitchen34 from '../assets/images/Gallery/Kitchens/IMG-84889a070defd0397b194378436278bc-V.jpg';
+import kitchen35 from '../assets/images/Gallery/Kitchens/IMG-bd3765db85c58e591aee7df1570c8622-V.jpg';
+import kitchen36 from '../assets/images/Gallery/Kitchens/IMG-c0552f8d31cf5878bef358301f69bcaf-V.jpg';
+import kitchen37 from '../assets/images/Gallery/Kitchens/IMG-c2e8a376311e96757f81907f10daa15e-V.jpg';
+import kitchen38 from '../assets/images/Gallery/Kitchens/IMG-ca358a37c414adcf4d6098d8c80b7110-V.jpg';
+
+// Import new bedroom images (4 additional)
+import bedroom10 from '../assets/images/Gallery/Bedrooms/IMG-237d79ea1d9c28ef590da5569cf6fdec-V.jpg';
+import bedroom11 from '../assets/images/Gallery/Bedrooms/IMG-4f6bcd11d4f9b3c05f635de005a2205c-V.jpg';
+import bedroom12 from '../assets/images/Gallery/Bedrooms/IMG-8159cceb749a67290720b53bad6482bd-V.jpg';
+import bedroom13 from '../assets/images/Gallery/Bedrooms/IMG-be11026af218db8ff0b5ef39f8b7c8bd-V.jpg';
+
+// Import new bathroom image (1 additional)
+import bathroom3 from '../assets/images/Gallery/Bathrooms/image.png';
+
+// Import new office images (6 additional)
+import office6 from '../assets/images/Gallery/Offices/IMG-1dd3df5264b6eff5d7fd0e93f576150a-V.jpg';
+import office7 from '../assets/images/Gallery/Offices/IMG-2c1ce835e2bc3e1564967976e363d406-V.jpg';
+import office8 from '../assets/images/Gallery/Offices/IMG-3edb12b9934470c5c6d7d690abc46115-V.jpg';
+import office9 from '../assets/images/Gallery/Offices/IMG-790f6ac4b6e40ae4cf95854d4e064cd8-V.jpg';
+import office10 from '../assets/images/Gallery/Offices/IMG-8c25439f676c4354681e2af1d80f2aa1-V.jpg';
+import office11 from '../assets/images/Gallery/Offices/IMG-c742f1770e1c5af65c67cb3bb9b5c345-V.jpg';
+
+// Import Other images (7 additional)
+import other1 from '../assets/images/Gallery/Other/IMG-3ee6156f69f0812751ea2ed2334104ce-V.jpg';
+import other2 from '../assets/images/Gallery/Other/IMG-5b660ba3539f8f7bcab90a4b81c6a3dc-V.jpg';
+import other3 from '../assets/images/Gallery/Other/IMG-5edb99ebcf912ae2ba827b40e914077f-V.jpg';
+import other4 from '../assets/images/Gallery/Other/IMG-60ddc2348058984305d45fed5fa5567b-V.jpg';
+import other5 from '../assets/images/Gallery/Other/IMG_20151012_141217.jpg';
+import other6 from '../assets/images/Gallery/Other/IMG_20180626_125110563~2.jpg';
+import other7 from '../assets/images/Gallery/Other/IMG_20230202_131934.jpg';
+
 function Gallery() {
   const [activeFilter, setActiveFilter] = useState('sve');
   const [visualActiveFilter, setVisualActiveFilter] = useState('sve');
@@ -141,6 +187,52 @@ function Gallery() {
     { id: 37, category: 'ostalo', image: frontdesk1, title: 'Recepcija Genesis sa zlatnim lustrima', size: 'normal' },
     { id: 38, category: 'ostalo', image: frontdesk2, title: 'Recepcija Genesis - ugao', size: 'normal' },
     { id: 39, category: 'ostalo', image: frontdesk3, title: 'Recepcija Genesis - prednji deo', size: 'normal' },
+
+    // New kitchen images
+    { id: 40, category: 'kuhinje', image: kitchen21, title: 'Kuhinja - klasičan stil', size: 'normal' },
+    { id: 41, category: 'kuhinje', image: kitchen22, title: 'Kuhinja - svetla drvena', size: 'normal' },
+    { id: 42, category: 'kuhinje', image: kitchen23, title: 'Kuhinja - moderna bela', size: 'normal' },
+    { id: 43, category: 'kuhinje', image: kitchen24, title: 'Kuhinja - otvoreni plan', size: 'normal' },
+    { id: 44, category: 'kuhinje', image: kitchen25, title: 'Kuhinja - poluostrvo', size: 'normal' },
+    { id: 45, category: 'kuhinje', image: kitchen26, title: 'Kuhinja - varijanta 26', size: 'normal' },
+    { id: 46, category: 'kuhinje', image: kitchen27, title: 'Kuhinja - varijanta 27', size: 'normal' },
+    { id: 47, category: 'kuhinje', image: kitchen28, title: 'Kuhinja - varijanta 28', size: 'normal' },
+    { id: 48, category: 'kuhinje', image: kitchen29, title: 'Kuhinja - varijanta 29', size: 'normal' },
+    { id: 49, category: 'kuhinje', image: kitchen30, title: 'Kuhinja - varijanta 30', size: 'normal' },
+    { id: 50, category: 'kuhinje', image: kitchen31, title: 'Kuhinja - varijanta 31', size: 'normal' },
+    { id: 51, category: 'kuhinje', image: kitchen32, title: 'Kuhinja - varijanta 32', size: 'normal' },
+    { id: 52, category: 'kuhinje', image: kitchen33, title: 'Kuhinja - varijanta 33', size: 'normal' },
+    { id: 53, category: 'kuhinje', image: kitchen34, title: 'Kuhinja - varijanta 34', size: 'normal' },
+    { id: 54, category: 'kuhinje', image: kitchen35, title: 'Kuhinja - varijanta 35', size: 'normal' },
+    { id: 55, category: 'kuhinje', image: kitchen36, title: 'Kuhinja - varijanta 36', size: 'normal' },
+    { id: 56, category: 'kuhinje', image: kitchen37, title: 'Kuhinja - varijanta 37', size: 'normal' },
+    { id: 57, category: 'kuhinje', image: kitchen38, title: 'Kuhinja - varijanta 38', size: 'normal' },
+
+    // New bedroom images
+    { id: 58, category: 'spavace', image: bedroom10, title: 'Spavaća soba - varijanta 10', size: 'normal' },
+    { id: 59, category: 'spavace', image: bedroom11, title: 'Spavaća soba - varijanta 11', size: 'normal' },
+    { id: 60, category: 'spavace', image: bedroom12, title: 'Spavaća soba - varijanta 12', size: 'normal' },
+    { id: 61, category: 'spavace', image: bedroom13, title: 'Spavaća soba - varijanta 13', size: 'normal' },
+
+    // New bathroom image
+    { id: 62, category: 'kupatila', image: bathroom3, title: 'Kupatilo - varijanta 3', size: 'normal' },
+
+    // New office/interior images
+    { id: 63, category: 'ostalo', image: office6, title: 'Enterijer - varijanta 6', size: 'normal' },
+    { id: 64, category: 'ostalo', image: office7, title: 'Enterijer - varijanta 7', size: 'normal' },
+    { id: 65, category: 'ostalo', image: office8, title: 'Enterijer - varijanta 8', size: 'normal' },
+    { id: 66, category: 'ostalo', image: office9, title: 'Enterijer - varijanta 9', size: 'normal' },
+    { id: 67, category: 'ostalo', image: office10, title: 'Enterijer - varijanta 10', size: 'normal' },
+    { id: 68, category: 'ostalo', image: office11, title: 'Enterijer - varijanta 11', size: 'normal' },
+
+    // Other images
+    { id: 69, category: 'ostalo', image: other1, title: 'Enterijer - varijanta 12', size: 'normal' },
+    { id: 70, category: 'ostalo', image: other2, title: 'Enterijer - varijanta 13', size: 'normal' },
+    { id: 71, category: 'ostalo', image: other3, title: 'Enterijer - varijanta 14', size: 'normal' },
+    { id: 72, category: 'ostalo', image: other4, title: 'Enterijer - varijanta 15', size: 'normal' },
+    { id: 73, category: 'ostalo', image: other5, title: 'Enterijer - varijanta 16', size: 'normal' },
+    { id: 74, category: 'ostalo', image: other6, title: 'Enterijer - varijanta 17', size: 'normal' },
+    { id: 75, category: 'ostalo', image: other7, title: 'Enterijer - varijanta 18', size: 'normal' },
   ];
 
   const filters = [
