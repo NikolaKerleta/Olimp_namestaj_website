@@ -10,7 +10,12 @@ function Hero() {
   const [scrollY, setScrollY] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
+  const heroImages = [
+    { src: heroImage1, alt: 'Olimp stolarija – moderna kuhinja po meri sa drvenim elementima, Novi Sad' },
+    { src: heroImage2, alt: 'Olimp stolarija – luksuzna kuhinja u tamnim i svetlim tonovima, Novi Sad' },
+    { src: heroImage3, alt: 'Olimp stolarija – recepcija po meri sa zlatnim lustrima' },
+    { src: heroImage4, alt: 'Olimp stolarija – dnevna soba sa nameštajem po meri' },
+  ];
 
   useEffect(() => {
     // Trigger entrance animations
@@ -33,6 +38,17 @@ function Hero() {
 
     return () => clearInterval(interval);
   }, [heroImages.length]);
+
+  // Preload next hero image for smoother transitions
+  useEffect(() => {
+    const nextIndex = (currentImageIndex + 1) % heroImages.length;
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = 'image';
+    link.href = heroImages[nextIndex].src;
+    document.head.appendChild(link);
+    return () => document.head.removeChild(link);
+  }, [currentImageIndex, heroImages]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -127,9 +143,11 @@ function Hero() {
               }}
             >
               <img
-                src={image}
-                alt={`Olimp stolarska radnja - projekat ${index + 1}`}
+                src={image.src}
+                alt={image.alt}
                 className="w-full h-full object-cover"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : 'low'}
               />
             </div>
           ))}
@@ -202,9 +220,11 @@ function Hero() {
               }}
             >
               <img
-                src={image}
-                alt={`Olimp stolarska radnja - projekat ${index + 1}`}
+                src={image.src}
+                alt={image.alt}
                 className="w-full h-full object-cover scale-110"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : 'low'}
               />
             </div>
           ))}
