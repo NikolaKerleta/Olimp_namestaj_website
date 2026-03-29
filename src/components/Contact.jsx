@@ -77,8 +77,7 @@ function Contact() {
     body += `Poruka:\n${formData.message}`;
 
     // Construct mailto link with proper encoding
-    // TODO: change after testing back to olimp.namestaj@gmail.com
-    const mailtoLink = `mailto:nikola.kerleta1@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:olimp.namestaj@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     // Open mailto link
     window.location.href = mailtoLink;
