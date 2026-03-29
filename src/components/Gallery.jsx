@@ -56,6 +56,7 @@ function Gallery() {
   const [isVisible, setIsVisible] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
   const sectionRef = useRef(null);
@@ -86,6 +87,12 @@ function Gallery() {
 
     return () => observer.disconnect();
   }, []);
+
+  // Show swipe hint whenever "Sve" mode is active
+  useEffect(() => {
+    if (activeFilter !== 'sve') return;
+    setShowSwipeHint(true);
+  }, [activeFilter]);
 
   const projects = [
     // Kitchens (20 images)
@@ -177,6 +184,7 @@ function Gallery() {
   const handlePointerDown = (e) => {
     if (isFlying) return;
     if (e.pointerType === 'mouse') return; // mouse users click to zoom, arrows to navigate
+    setShowSwipeHint(false);
     e.currentTarget.setPointerCapture(e.pointerId);
     dragStartX.current = e.clientX;
     dragStartY.current = e.clientY;
@@ -279,7 +287,7 @@ function Gallery() {
     <section
       id="gallery"
       ref={sectionRef}
-      className="py-[var(--spacing-section-mobile)] lg:py-[var(--spacing-section)] bg-[var(--color-background)] relative overflow-hidden [overflow-anchor:none]"
+      className="py-10 lg:py-[var(--spacing-section)] bg-[var(--color-background)] relative overflow-hidden [overflow-anchor:none]"
     >
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -289,7 +297,7 @@ function Gallery() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div
-          className={`text-center mb-24 lg:mb-32 max-w-4xl mx-auto transition-all duration-1000 ${
+          className={`text-center mb-10 lg:mb-32 max-w-4xl mx-auto transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -337,24 +345,6 @@ function Gallery() {
           ))}
         </div>
 
-        {/* Swipe Indicator - Only for "Sve" mode */}
-        {activeFilter === 'sve' && (
-          <div
-            className={`flex justify-center items-center gap-3 lg:mb-12 text-[var(--color-text-secondary)] transition-all duration-1000 delay-400 ${
-              isVisible && filteredProjects.length > 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            <div className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full shadow-sm">
-              <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-              </svg>
-              <span className="text-sm font-medium animate-pulse">Prevuci za više</span>
-              <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-          </div>
-        )}
 
         {/* Conditional rendering: Swipe mode for "Sve", Grid mode for specific categories */}
         {activeFilter === 'sve' ? (
@@ -434,7 +424,10 @@ function Gallery() {
                       onPointerUp={isActive ? handlePointerUp : undefined}
                       onPointerCancel={isActive ? handlePointerUp : undefined}
                       onClick={() => {
-                        if (isActive && !isFlying && Math.abs(dragX) < 5) openLightbox(index);
+                        if (isActive && !isFlying && Math.abs(dragX) < 5) {
+                          setShowSwipeHint(false);
+                          openLightbox(index);
+                        }
                       }}
                     >
                       {/* Swipe direction hint overlay */}
@@ -460,6 +453,36 @@ function Gallery() {
                             draggable="false"
                             loading="lazy"
                           />
+                          {/* Swipe hint overlay — mobile only, plays once */}
+                          {showSwipeHint && isActive && (
+                            <div
+                              className="absolute inset-0 lg:hidden animate-swipe-hint-reveal pointer-events-none z-10 flex items-center justify-center"
+                              style={{ background: 'rgba(0,0,0,0.25)' }}
+                            >
+                              <div style={{ position: 'relative', width: 80, height: 44 }}>
+                                {/* Pill outline */}
+                                <div style={{
+                                  position: 'absolute', inset: 0,
+                                  borderRadius: 22,
+                                  border: '2.5px solid rgba(255,255,255,0.9)',
+                                }} />
+                                {/* Sliding dot */}
+                                <div
+                                  className="animate-swipe-dot-slide"
+                                  style={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: 12,
+                                    width: 12,
+                                    height: 12,
+                                    borderRadius: '50%',
+                                    background: 'white',
+                                    transform: 'translateY(-50%)',
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          )}
                           {isActive && !isDragging && (
                             <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300 flex items-center justify-center group">
                               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-4">

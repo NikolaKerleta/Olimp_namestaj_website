@@ -104,6 +104,30 @@ select:focus-visible {
   box-shadow: 0 0 0 3px rgba(181, 87, 58, 0.2);
 }
 
+/* Swipe hint overlay animation */
+@keyframes swipe-hint-reveal {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes swipe-dot-slide {
+  0%   { left: 12px; opacity: 1; }
+  20%  { left: 12px; opacity: 1; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  50%  { left: 56px; opacity: 1; }
+  62%  { left: 56px; opacity: 0; }
+  63%  { left: 12px; opacity: 0; animation-timing-function: ease-out; }
+  82%  { left: 12px; opacity: 1; }
+  100% { left: 12px; opacity: 1; }
+}
+
+.animate-swipe-hint-reveal {
+  animation: swipe-hint-reveal 0.4s ease-out forwards;
+}
+
+.animate-swipe-dot-slide {
+  animation: swipe-dot-slide 2.2s linear 0.3s infinite;
+}
+
 /* Professional Animations */
 @keyframes fadeInUp {
   from {
