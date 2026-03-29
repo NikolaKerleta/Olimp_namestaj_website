@@ -75,8 +75,8 @@ function About() {
       )
     },
     {
-      title: 'Komode',
-      description: 'Prostrane i funkcionalne komode sa elegantnim fiokama za organizaciju.',
+      title: 'Kancelarije',
+      description: 'Funkcionalni kancelarijski nameštaj po meri – stolovi, police i ormarići koji spajaju estetiku i produktivnost.',
       icon: (
         <svg className="w-10 h-10" viewBox="0 0 256 256" fill="currentColor">
           <path d="M144,192a8,8,0,0,1-8,8H120a8,8,0,0,1,0-16h16A8,8,0,0,1,144,192ZM120,72h16a8,8,0,0,0,0-16H120a8,8,0,0,0,0,16Zm16,48H120a8,8,0,0,0,0,16h16a8,8,0,0,0,0-16Zm80-80V216a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V40A16,16,0,0,1,56,24H200A16,16,0,0,1,216,40ZM56,152H200V104H56ZM56,40V88H200V40ZM200,216V168H56v48Z" />
@@ -115,10 +115,10 @@ function About() {
           </h2>
           <div className="space-y-12 text-2xl lg:text-3xl text-[var(--color-text-secondary)] leading-relaxed font-light">
             <p>
-              U svetu masovne proizvodnje, mi smo izabrali teži, ali časniji put. Ono što je <strong className="text-[var(--color-text-primary)] font-semibold">1996. godine</strong> počelo kao skromna porodična radionica, danas je simbol za postojanost i vrhunsku stolariju <strong className="text-[var(--color-text-primary)] font-semibold">na Balkanu</strong>. Nismo jurili za brzim rastom; jurili smo za kvalitetom koji traje.
+              U svetu masovne proizvodnje, mi smo izabrali teži, ali kvalitetniji put. Ono što je <strong className="text-[var(--color-text-primary)] font-semibold">1996. godine</strong> počelo kao skromna porodična radionica, danas je simbol za vrhunsku stolariju <strong className="text-[var(--color-text-primary)] font-semibold">na Balkanu</strong>. Nismo jurili za brzim rastom; jurili smo za kvalitetom i estetskim dizajnom.
             </p>
             <p>
-              Izgradili smo reputaciju bez agresivnog marketinga – isključivo kroz <strong className="text-[var(--color-text-primary)] font-semibold">vrhunski kvalitet rada i mrežu zadovoljnih klijenata. </strong> Radujemo se prilici da i za vas kreiramo sledeće moderno rešenje.
+              Izgradili smo reputaciju bez agresivnog marketinga – isključivo kroz <strong className="text-[var(--color-text-primary)] font-semibold">vrhunski kvalitet rada i mrežu zadovoljnih klijenata. </strong> Dozvolite nam da i Vašu ideju pretvorimo u našu sledeću preporuku.
             </p>
           </div>
         </div>
@@ -133,7 +133,7 @@ function About() {
             Šta radimo?
           </h3>
           <p className="text-xl lg:text-2xl text-[var(--color-text-secondary)] font-light">
-            Prilagođena rešenja za svaki prostor u Vašem domu
+            Rešenja po meri za svaki prostor u Vašem domu
           </p>
         </div>
 
