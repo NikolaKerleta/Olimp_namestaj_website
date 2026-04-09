@@ -115,7 +115,7 @@ function About() {
           </h2>
           <div className="space-y-12 text-2xl lg:text-3xl text-[var(--color-text-secondary)] leading-relaxed font-light">
             <p>
-              U svetu masovne proizvodnje, mi smo izabrali teži, ali kvalitetniji put. Ono što je <strong className="text-[var(--color-text-primary)] font-semibold">1996. godine</strong> počelo kao skromna porodična radionica, danas je simbol za vrhunsku stolariju <strong className="text-[var(--color-text-primary)] font-semibold">na Balkanu</strong>. Nismo jurili za brzim rastom; jurili smo za kvalitetom i estetskim dizajnom.
+              U svetu masovne proizvodnje, mi smo izabrali teži, ali kvalitetniji put. Ono što je <strong className="text-[var(--color-text-primary)] font-semibold">1996. godine</strong> počelo kao skromna porodična radionica, danas je simbol za vrhunsku stolariju <strong className="text-[var(--color-text-primary)] font-semibold">u Srbiji</strong>. Nismo jurili za brzim rastom; jurili smo za kvalitetom i estetskim dizajnom.
             </p>
             <p>
               Izgradili smo reputaciju bez agresivnog marketinga – isključivo kroz <strong className="text-[var(--color-text-primary)] font-semibold">vrhunski kvalitet rada i mrežu zadovoljnih klijenata. </strong> Dozvolite nam da i Vašu ideju pretvorimo u našu sledeću preporuku.

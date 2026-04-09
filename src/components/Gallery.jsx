@@ -3,7 +3,6 @@ import { useSwipeable } from 'react-swipeable'; // kept for lightbox only
 
 // Import kitchen images (20 total)
 import kitchen1 from '../assets/images/Gallery/Kitchens/kitchen_modern_potential_hero.jpg';
-import kitchen2 from '../assets/images/Gallery/Kitchens/kitchen_dark_and_light_potential_hero.jpg';
 import kitchen3 from '../assets/images/Gallery/Kitchens/potential_hero_kitchen_white.jpg';
 import kitchen4 from '../assets/images/Gallery/Kitchens/kitchen-wood.jpg';
 import kitchen5 from '../assets/images/Gallery/Kitchens/kitchen-wood-1.jpg';
@@ -14,14 +13,12 @@ import kitchen9 from '../assets/images/Gallery/Kitchens/kitchen_textured.jpg';
 import kitchen10 from '../assets/images/Gallery/Kitchens/kitchen_textured_v2.jpg';
 import kitchen11 from '../assets/images/Gallery/Kitchens/kitchen_textured_v2_1.jpg';
 import kitchen12 from '../assets/images/Gallery/Kitchens/kitchen_pink-ish.jpg';
-import kitchen13 from '../assets/images/Gallery/Kitchens/kitchen_dark_and_light_1.jpg';
 import kitchen14 from '../assets/images/Gallery/Kitchens/kitchen_modern.jpg';
 import kitchen15 from '../assets/images/Gallery/Kitchens/kitchen_modern_1.jpg';
 import kitchen16 from '../assets/images/Gallery/Kitchens/kitchen_modern_2.jpg';
 import kitchen17 from '../assets/images/Gallery/Kitchens/kitchen_white_slim.jpg';
 import kitchen18 from '../assets/images/Gallery/Kitchens/kitchen_white_slim_1.jpg';
 import kitchen19 from '../assets/images/Gallery/Kitchens/kitchen_white_slim_2.jpg';
-import kitchen20 from '../assets/images/Gallery/Kitchens/kitchen_wine_celler.jpg';
 
 // Import bedroom images (9 total)
 import bedroom1 from '../assets/images/Gallery/Bedrooms/bedroom_space.jpg';
@@ -53,7 +50,6 @@ import frontdesk3 from '../assets/images/Gallery/FrontDesks/front_desk.jpg';
 // Import new kitchen images (18 additional)
 import kitchen21 from '../assets/images/Gallery/Kitchens/20150326_124037.jpg';
 import kitchen22 from '../assets/images/Gallery/Kitchens/IMG-001f24ebff4b1fe53a5ef47cd11a429a-V.jpg';
-import kitchen23 from '../assets/images/Gallery/Kitchens/IMG-022cd268c15419c18f9e7acb93a4d06f-V.jpg';
 import kitchen24 from '../assets/images/Gallery/Kitchens/IMG-16b79307b800c58cd946f1430fdb18d2-V.jpg';
 import kitchen25 from '../assets/images/Gallery/Kitchens/IMG-180a7e67f6aec2c2cf140e01af348bea-V.jpg';
 import kitchen26 from '../assets/images/Gallery/Kitchens/IMG-234fe3b6c9d15a82dba13517bb458558-V.jpg';
@@ -65,7 +61,6 @@ import kitchen31 from '../assets/images/Gallery/Kitchens/IMG-3e1591743edfcba6751
 import kitchen32 from '../assets/images/Gallery/Kitchens/IMG-63aebc18eb1954d100d8ef2652d7f66b-V.jpg';
 import kitchen33 from '../assets/images/Gallery/Kitchens/IMG-7c95d724e77feaa6ba8766f9e125b907-V.jpg';
 import kitchen34 from '../assets/images/Gallery/Kitchens/IMG-84889a070defd0397b194378436278bc-V.jpg';
-import kitchen35 from '../assets/images/Gallery/Kitchens/IMG-bd3765db85c58e591aee7df1570c8622-V.jpg';
 import kitchen36 from '../assets/images/Gallery/Kitchens/IMG-c0552f8d31cf5878bef358301f69bcaf-V.jpg';
 import kitchen37 from '../assets/images/Gallery/Kitchens/IMG-c2e8a376311e96757f81907f10daa15e-V.jpg';
 import kitchen38 from '../assets/images/Gallery/Kitchens/IMG-ca358a37c414adcf4d6098d8c80b7110-V.jpg';
@@ -82,7 +77,6 @@ import bathroom3 from '../assets/images/Gallery/Bathrooms/image.png';
 // Import new office images (6 additional)
 import office6 from '../assets/images/Gallery/Offices/IMG-1dd3df5264b6eff5d7fd0e93f576150a-V.jpg';
 import office7 from '../assets/images/Gallery/Offices/IMG-2c1ce835e2bc3e1564967976e363d406-V.jpg';
-import office8 from '../assets/images/Gallery/Offices/IMG-3edb12b9934470c5c6d7d690abc46115-V.jpg';
 import office9 from '../assets/images/Gallery/Offices/IMG-790f6ac4b6e40ae4cf95854d4e064cd8-V.jpg';
 import office10 from '../assets/images/Gallery/Offices/IMG-8c25439f676c4354681e2af1d80f2aa1-V.jpg';
 import office11 from '../assets/images/Gallery/Offices/IMG-c742f1770e1c5af65c67cb3bb9b5c345-V.jpg';
@@ -143,7 +137,6 @@ function Gallery() {
   const projects = [
     // Kitchens (20 images)
     { id: 1, category: 'kuhinje', image: kitchen1, title: 'Moderna kuhinja sa drvom i hromom', size: 'large' },
-    { id: 2, category: 'kuhinje', image: kitchen2, title: 'Luksuzna kuhinja sa tamnim mramorom', size: 'normal' },
     { id: 3, category: 'kuhinje', image: kitchen3, title: 'Bela kuhinja sa lustrom', size: 'normal' },
     { id: 4, category: 'kuhinje', image: kitchen4, title: 'Kuhinja od drveta', size: 'normal' },
     { id: 5, category: 'kuhinje', image: kitchen5, title: 'Drvenа kuhinja - varijanta 2', size: 'normal' },
@@ -154,14 +147,12 @@ function Gallery() {
     { id: 10, category: 'kuhinje', image: kitchen10, title: 'Teksturirana kuhinja', size: 'normal' },
     { id: 11, category: 'kuhinje', image: kitchen11, title: 'Teksturirana kuhinja - varijanta 2', size: 'normal' },
     { id: 12, category: 'kuhinje', image: kitchen12, title: 'Ružičasta kuhinja', size: 'normal' },
-    { id: 13, category: 'kuhinje', image: kitchen13, title: 'Kuhinja u tamnim i svetlim tonovima', size: 'normal' },
     { id: 14, category: 'kuhinje', image: kitchen14, title: 'Moderna kuhinja', size: 'normal' },
     { id: 15, category: 'kuhinje', image: kitchen15, title: 'Moderna kuhinja - varijanta 2', size: 'normal' },
     { id: 16, category: 'kuhinje', image: kitchen16, title: 'Moderna kuhinja - varijanta 3', size: 'normal' },
     { id: 17, category: 'kuhinje', image: kitchen17, title: 'Vitka bela kuhinja', size: 'normal' },
     { id: 18, category: 'kuhinje', image: kitchen18, title: 'Vitka bela kuhinja - varijanta 2', size: 'normal' },
     { id: 19, category: 'kuhinje', image: kitchen19, title: 'Vitka bela kuhinja - varijanta 3', size: 'normal' },
-    { id: 20, category: 'kuhinje', image: kitchen20, title: 'Vinski podrum', size: 'normal' },
 
     // Bedrooms (9 images)
     { id: 21, category: 'spavace', image: bedroom1, title: 'Dečija soba - svemirska tema', size: 'large' },
@@ -191,7 +182,6 @@ function Gallery() {
     // New kitchen images
     { id: 40, category: 'kuhinje', image: kitchen21, title: 'Kuhinja - klasičan stil', size: 'normal' },
     { id: 41, category: 'kuhinje', image: kitchen22, title: 'Kuhinja - svetla drvena', size: 'normal' },
-    { id: 42, category: 'kuhinje', image: kitchen23, title: 'Kuhinja - moderna bela', size: 'normal' },
     { id: 43, category: 'kuhinje', image: kitchen24, title: 'Kuhinja - otvoreni plan', size: 'normal' },
     { id: 44, category: 'kuhinje', image: kitchen25, title: 'Kuhinja - poluostrvo', size: 'normal' },
     { id: 45, category: 'kuhinje', image: kitchen26, title: 'Kuhinja - varijanta 26', size: 'normal' },
@@ -203,7 +193,6 @@ function Gallery() {
     { id: 51, category: 'kuhinje', image: kitchen32, title: 'Kuhinja - varijanta 32', size: 'normal' },
     { id: 52, category: 'kuhinje', image: kitchen33, title: 'Kuhinja - varijanta 33', size: 'normal' },
     { id: 53, category: 'kuhinje', image: kitchen34, title: 'Kuhinja - varijanta 34', size: 'normal' },
-    { id: 54, category: 'kuhinje', image: kitchen35, title: 'Kuhinja - varijanta 35', size: 'normal' },
     { id: 55, category: 'kuhinje', image: kitchen36, title: 'Kuhinja - varijanta 36', size: 'normal' },
     { id: 56, category: 'kuhinje', image: kitchen37, title: 'Kuhinja - varijanta 37', size: 'normal' },
     { id: 57, category: 'kuhinje', image: kitchen38, title: 'Kuhinja - varijanta 38', size: 'normal' },
@@ -220,7 +209,6 @@ function Gallery() {
     // New office/interior images
     { id: 63, category: 'ostalo', image: office6, title: 'Enterijer - varijanta 6', size: 'normal' },
     { id: 64, category: 'ostalo', image: office7, title: 'Enterijer - varijanta 7', size: 'normal' },
-    { id: 65, category: 'ostalo', image: office8, title: 'Enterijer - varijanta 8', size: 'normal' },
     { id: 66, category: 'ostalo', image: office9, title: 'Enterijer - varijanta 9', size: 'normal' },
     { id: 67, category: 'ostalo', image: office10, title: 'Enterijer - varijanta 10', size: 'normal' },
     { id: 68, category: 'ostalo', image: office11, title: 'Enterijer - varijanta 11', size: 'normal' },

@@ -165,7 +165,7 @@ function Contact() {
         </svg>
       ),
       label: 'Radno vreme',
-      value: 'Pon-Pet: 08:00-17:00',
+      value: 'Pon-Pet: 08:00-16:00',
       link: null
     }
   ];
