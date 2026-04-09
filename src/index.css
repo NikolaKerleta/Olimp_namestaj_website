@@ -3,6 +3,10 @@
 
 @import "tailwindcss";
 
+body.lightbox-open header {
+  display: none;
+}
+
 @theme {
   /* Refined Color Palette - Olimp Brand */
   --color-background: #FAF8F5;

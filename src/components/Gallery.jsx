@@ -326,7 +326,11 @@ function Gallery() {
   // Sync body overflow with lightbox state
   useEffect(() => {
     document.body.style.overflow = lightboxOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    document.body.classList.toggle('lightbox-open', lightboxOpen);
+    return () => {
+      document.body.style.overflow = '';
+      document.body.classList.remove('lightbox-open');
+    };
   }, [lightboxOpen]);
 
   const nextLightboxImage = () => {
