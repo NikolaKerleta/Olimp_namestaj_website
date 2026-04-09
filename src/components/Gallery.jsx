@@ -27,7 +27,6 @@ import bedroom3 from '../assets/images/Gallery/Bedrooms/bedroom_brown.jpg';
 import bedroom4 from '../assets/images/Gallery/Bedrooms/bedroom_brown_1.jpg';
 import bedroom5 from '../assets/images/Gallery/Bedrooms/bedroom_brown_light.jpg';
 import bedroom6 from '../assets/images/Gallery/Bedrooms/bedroom_pink-ish.jpg';
-import bedroom7 from '../assets/images/Gallery/Bedrooms/bedroom_pink-ish_1.jpg';
 import bedroom8 from '../assets/images/Gallery/Bedrooms/bedroom_floral_white.jpg';
 import bedroom9 from '../assets/images/Gallery/Bedrooms/bedroom_white.jpg';
 
@@ -146,7 +145,6 @@ function Gallery() {
     { id: 9, category: 'kuhinje', image: kitchen9, title: 'Kuhinja sa mramornim bаr stolicama', size: 'normal' },
     { id: 10, category: 'kuhinje', image: kitchen10, title: 'Teksturirana kuhinja', size: 'normal' },
     { id: 11, category: 'kuhinje', image: kitchen11, title: 'Teksturirana kuhinja - varijanta 2', size: 'normal' },
-    { id: 12, category: 'kuhinje', image: kitchen12, title: 'Ružičasta kuhinja', size: 'normal' },
     { id: 14, category: 'kuhinje', image: kitchen14, title: 'Moderna kuhinja', size: 'normal' },
     { id: 15, category: 'kuhinje', image: kitchen15, title: 'Moderna kuhinja - varijanta 2', size: 'normal' },
     { id: 16, category: 'kuhinje', image: kitchen16, title: 'Moderna kuhinja - varijanta 3', size: 'normal' },
@@ -161,7 +159,7 @@ function Gallery() {
     { id: 24, category: 'spavace', image: bedroom4, title: 'Braon spavaća soba', size: 'normal' },
     { id: 25, category: 'spavace', image: bedroom5, title: 'Svetla braon spavaća soba', size: 'normal' },
     { id: 26, category: 'spavace', image: bedroom6, title: 'Ružičasta spavaća soba', size: 'normal' },
-    { id: 27, category: 'spavace', image: bedroom7, title: 'Ružičasta spavaća soba - varijanta 2', size: 'normal' },
+    { id: 27, category: 'spavace', image: kitchen12, title: 'Ružičasta spavaća soba - varijanta 2', size: 'normal' },
     { id: 28, category: 'spavace', image: bedroom8, title: 'Bela spavaća soba sa cvećem', size: 'normal' },
     { id: 29, category: 'spavace', image: bedroom9, title: 'Bela spavaća soba', size: 'normal' },
 
