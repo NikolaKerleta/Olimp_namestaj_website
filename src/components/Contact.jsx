@@ -81,6 +81,9 @@ function Contact() {
 
     // Open mailto link
     window.location.href = mailtoLink;
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
 
     // Show success message after brief delay
     setTimeout(() => {
