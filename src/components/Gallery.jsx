@@ -315,6 +315,10 @@ function Gallery() {
   const openLightbox = (index) => {
     setLightboxImageIndex(index);
     setLightboxOpen(true);
+    if (typeof fbq === 'function') {
+      const project = filteredProjects[index];
+      fbq('track', 'ViewContent', { content_name: project.title, content_category: project.category });
+    }
   };
 
   const closeLightbox = () => {
